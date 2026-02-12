@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
@@ -7,6 +8,14 @@ import AdBanner from './components/AdBanner';
 import LandingPage from './pages/LandingPage';
 import BrowsePage from './pages/BrowsePage';
 import ChargerDetailPage from './pages/ChargerDetailPage';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -53,6 +62,7 @@ function AppLayout() {
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <AppLayout />
     </Router>
   );
