@@ -1,0 +1,48 @@
+export type ConnectorType = 'J1772' | 'Tesla NACS' | 'CCS';
+export type ChargingLevel = 'Level 1' | 'Level 2' | 'Level 3';
+
+export interface Host {
+  id: string;
+  name: string;
+  avatar: string;
+  rating: number;
+  reviewCount: number;
+  verified: boolean;
+}
+
+export interface Review {
+  id: string;
+  author: string;
+  avatar: string;
+  rating: number;
+  date: string;
+  comment: string;
+}
+
+export interface AvailabilitySlot {
+  day: number; // 0=Sunday, 1=Monday, ... 6=Saturday
+  hours: number[]; // available hours, e.g. [8,9,10,11,12,13,14,15,16]
+}
+
+export interface Charger {
+  id: string;
+  host: Host;
+  brand: string;
+  model: string;
+  address: string;
+  city: string;
+  distance: string;
+  connectorType: ConnectorType;
+  level: ChargingLevel;
+  powerKW: number;
+  pricePerKwh: number;
+  accessFee: number;
+  available: boolean;
+  nextSlot?: string;
+  amenities: string[];
+  extras: string[];
+  description: string;
+  reviews: Review[];
+  availability: AvailabilitySlot[];
+  imageUrl: string;
+}
