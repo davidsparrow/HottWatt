@@ -3,11 +3,18 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft, Zap, DollarSign, Calendar, Clock, CheckCircle,
-  ChevronRight, Plug, BatteryCharging, MapPin, Settings,
+  ChevronRight, Plug, BatteryCharging, MapPin, Settings, Car,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import FadeInView from '../components/FadeInView';
-import type { ConnectorType, ChargingLevel } from '../data/types';
+import type { ConnectorType, ChargingLevel, LastMilePricing } from '../data/types';
+
+const lastMilePricingOptions: { value: LastMilePricing; label: string }[] = [
+  { value: 'free', label: 'Free' },
+  { value: 'flat', label: 'Flat Fee ($)' },
+  { value: 'per_mile', label: '$/Mile' },
+  { value: 'per_minute', label: '$/Minute' },
+];
 
 const DAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -48,6 +55,12 @@ export default function ListChargerPage() {
   // Pricing
   const [pricePerKwh, setPricePerKwh] = useState('0.20');
   const [accessFee, setAccessFee] = useState('2.00');
+
+  // Last-Mile
+  const [lastMileEnabled, setLastMileEnabled] = useState(false);
+  const [lastMilePricing, setLastMilePricing] = useState<LastMilePricing>('free');
+  const [lastMilePrice, setLastMilePrice] = useState('0');
+  const [lastMileTwoWay, setLastMileTwoWay] = useState(false);
 
   // Availability — which days and hour ranges
   const [availDays, setAvailDays] = useState<Record<number, boolean>>({
@@ -367,6 +380,91 @@ export default function ListChargerPage() {
                     Formula: (${ pricePerKwh }/kWh x { powerKW } kW x 2h) + ${ accessFee } access fee
                   </p>
                 </div>
+
+                {/* Last-Mile Ride Service */}
+                <div className="border-t border-white/5 pt-6 mt-2">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Car className="w-5 h-5 text-coral" />
+                    <h3 className="font-heading font-bold text-white">Last-Mile Ride Service</h3>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-coral/10 text-coral border border-coral/20">
+                      Only on HottWatt
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mb-4">
+                    Offer to drive your guest from your home to their nearby destination while their car charges. A unique service nobody else offers.
+                  </p>
+
+                  <label className="flex items-center justify-between gap-3 cursor-pointer group p-3 rounded-lg bg-white/3 border border-white/5 hover:border-coral/20 transition-colors mb-4">
+                    <span className="text-sm font-medium text-white">Enable Last-Mile</span>
+                    <div className="relative">
+                      <input
+                        type="checkbox"
+                        checked={lastMileEnabled}
+                        onChange={(e) => setLastMileEnabled(e.target.checked)}
+                        className="sr-only peer"
+                      />
+                      <div className="w-9 h-5 bg-white/10 rounded-full peer-checked:bg-coral/30 transition-colors" />
+                      <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-gray-400 rounded-full peer-checked:translate-x-4 peer-checked:bg-coral transition-all" />
+                    </div>
+                  </label>
+
+                  {lastMileEnabled && (
+                    <div className="space-y-4 animate-in fade-in">
+                      <div>
+                        <label className="text-sm font-medium text-gray-300 mb-2 block">Pricing Type</label>
+                        <div className="flex flex-wrap gap-2">
+                          {lastMilePricingOptions.map((opt) => (
+                            <button
+                              key={opt.value}
+                              type="button"
+                              onClick={() => { setLastMilePricing(opt.value); if (opt.value === 'free') setLastMilePrice('0'); }}
+                              className={`px-3 py-2 rounded-xl text-sm font-medium transition-all border ${
+                                lastMilePricing === opt.value
+                                  ? 'bg-coral/15 text-coral border-coral/30'
+                                  : 'bg-white/3 text-gray-400 border-white/8 hover:bg-white/5'
+                              }`}
+                            >
+                              {opt.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {lastMilePricing !== 'free' && (
+                        <div>
+                          <label className="text-sm font-medium text-gray-300 mb-1.5 block">
+                            {lastMilePricing === 'flat' ? 'Flat Fee ($)' : lastMilePricing === 'per_mile' ? 'Rate ($/mile)' : 'Rate ($/minute)'}
+                          </label>
+                          <input
+                            type="number"
+                            step="0.25"
+                            min="0"
+                            value={lastMilePrice}
+                            onChange={(e) => setLastMilePrice(e.target.value)}
+                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:outline-none focus:border-coral/40 focus:ring-1 focus:ring-coral/20 transition-colors"
+                          />
+                        </div>
+                      )}
+
+                      <label className="flex items-center justify-between gap-3 cursor-pointer group p-3 rounded-lg bg-white/3 border border-white/5 hover:border-coral/20 transition-colors">
+                        <div>
+                          <span className="text-sm font-medium text-white block">2-Way (Round Trip)</span>
+                          <span className="text-xs text-gray-500">Also pick them up and bring them back</span>
+                        </div>
+                        <div className="relative">
+                          <input
+                            type="checkbox"
+                            checked={lastMileTwoWay}
+                            onChange={(e) => setLastMileTwoWay(e.target.checked)}
+                            className="sr-only peer"
+                          />
+                          <div className="w-9 h-5 bg-white/10 rounded-full peer-checked:bg-coral/30 transition-colors" />
+                          <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-gray-400 rounded-full peer-checked:translate-x-4 peer-checked:bg-coral transition-all" />
+                        </div>
+                      </label>
+                    </div>
+                  )}
+                </div>
               </div>
             </motion.div>
           )}
@@ -499,6 +597,16 @@ export default function ListChargerPage() {
                     {parseInt(endHour) === 0 ? '12 AM' : parseInt(endHour) < 12 ? `${endHour} AM` : parseInt(endHour) === 12 ? '12 PM' : `${parseInt(endHour) - 12} PM`}
                   </p>
                 </div>
+
+                {lastMileEnabled && (
+                  <div className="bg-coral/5 rounded-xl p-4 border border-coral/15">
+                    <span className="text-xs text-gray-500 uppercase tracking-wider">Last-Mile Ride</span>
+                    <p className="text-white font-medium mt-1">
+                      {lastMilePricing === 'free' ? 'Free' : lastMilePricing === 'flat' ? `$${lastMilePrice} flat` : lastMilePricing === 'per_mile' ? `$${lastMilePrice}/mile` : `$${lastMilePrice}/min`}
+                      {lastMileTwoWay ? ' (2-way round trip)' : ' (drop-off only)'}
+                    </p>
+                  </div>
+                )}
 
                 <div className="bg-electric/5 border border-electric/20 rounded-xl p-4 text-sm text-gray-300">
                   <p className="flex items-center gap-2 mb-1">

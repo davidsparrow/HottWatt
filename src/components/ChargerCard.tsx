@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Zap, Clock, CheckCircle, Lock } from 'lucide-react';
+import { Star, MapPin, Zap, Clock, CheckCircle, Lock, Car } from 'lucide-react';
 import { motion } from 'framer-motion';
 import type { Charger } from '../data/types';
 
@@ -85,6 +85,12 @@ export default function ChargerCard({ charger, index }: ChargerCardProps) {
           <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-white/5 text-gray-400 border border-white/10">
             {charger.powerKW} kW
           </span>
+          {charger.lastMile?.enabled && (
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium bg-coral/10 text-coral border border-coral/30">
+              <Car className="w-3 h-3" />
+              Last-Mile
+            </span>
+          )}
         </div>
 
         {/* Price & Availability */}

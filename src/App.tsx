@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AdBanner from './components/AdBanner';
@@ -10,6 +11,8 @@ import BrowsePage from './pages/BrowsePage';
 import ChargerDetailPage from './pages/ChargerDetailPage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import ListChargerPage from './pages/ListChargerPage';
+import AuthPage from './pages/AuthPage';
+import AuthCallbackPage from './pages/AuthCallbackPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -37,6 +40,8 @@ function AnimatedRoutes() {
           <Route path="/charger/:id" element={<ChargerDetailPage />} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/list" element={<ListChargerPage />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/auth/callback" element={<AuthCallbackPage />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
@@ -66,8 +71,10 @@ function AppLayout() {
 export default function App() {
   return (
     <Router>
-      <ScrollToTop />
-      <AppLayout />
+      <AuthProvider>
+        <ScrollToTop />
+        <AppLayout />
+      </AuthProvider>
     </Router>
   );
 }

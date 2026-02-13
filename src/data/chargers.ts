@@ -39,6 +39,7 @@ export const chargers: Charger[] = [
       { day: 6, hours: [9, 10, 11, 12, 13, 14] },
     ],
     imageUrl: '',
+    lastMile: { enabled: true, pricingType: 'free', price: 0, twoWay: true, notes: 'Happy to drop you off and pick you up within 2 miles of my house!' },
   },
   {
     id: '2',
@@ -79,6 +80,7 @@ export const chargers: Charger[] = [
       { day: 6, hours: [10, 11, 12, 13, 14, 15, 16] },
     ],
     imageUrl: '',
+    lastMile: { enabled: true, pricingType: 'per_mile', price: 1.50, twoWay: true, notes: 'I can take you to downtown Sausalito restaurants and pick you up when you\'re done.' },
   },
   {
     id: '3',
@@ -158,6 +160,7 @@ export const chargers: Charger[] = [
       { day: 5, hours: [8, 9, 10, 11, 14, 15, 16, 17, 18, 19] },
     ],
     imageUrl: '',
+    lastMile: { enabled: true, pricingType: 'flat', price: 5, twoWay: false, notes: 'Can drop you off at downtown San Rafael shops and restaurants.' },
   },
   {
     id: '5',
@@ -196,6 +199,7 @@ export const chargers: Charger[] = [
       { day: 5, hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] },
     ],
     imageUrl: '',
+    lastMile: { enabled: true, pricingType: 'per_minute', price: 0.50, twoWay: true, notes: 'Near BART — I can drive you to the station or anywhere within 10 min.' },
   },
   {
     id: '6',
@@ -277,6 +281,7 @@ export const chargers: Charger[] = [
       { day: 0, hours: [10, 11, 12, 13, 14, 15, 16, 17, 18] },
     ],
     imageUrl: '',
+    lastMile: { enabled: true, pricingType: 'free', price: 0, twoWay: true, notes: 'Premium experience includes complimentary ride within Polk Street area.' },
   },
   {
     id: '8',
