@@ -49,6 +49,7 @@ export default function BrowsePage() {
   const [availableOnly, setAvailableOnly] = useState(false);
   const [selectedDay, setSelectedDay] = useState(-1);
   const [selectedTime, setSelectedTime] = useState(-1);
+  const [lastMileOnly, setLastMileOnly] = useState(false);
 
   const filtered = useMemo(() => {
     return chargers.filter((c) => {
@@ -74,9 +75,11 @@ export default function BrowsePage() {
         });
       }
 
-      return matchSearch && matchLevel && matchConnector && matchAvailable && matchTimeSlot;
+      const matchLastMile = !lastMileOnly || c.lastMile?.enabled;
+
+      return matchSearch && matchLevel && matchConnector && matchAvailable && matchTimeSlot && matchLastMile;
     });
-  }, [searchQuery, selectedLevel, selectedConnector, availableOnly, selectedDay, selectedTime]);
+  }, [searchQuery, selectedLevel, selectedConnector, availableOnly, selectedDay, selectedTime, lastMileOnly]);
 
   return (
     <div className="min-h-screen pt-24 pb-16">
@@ -172,6 +175,22 @@ export default function BrowsePage() {
                 </div>
                 <span className="text-xs font-medium text-gray-400 group-hover:text-gray-300 transition-colors whitespace-nowrap">
                   Available Now
+                </span>
+              </label>
+
+              <label className="flex items-center gap-2 cursor-pointer group ml-4">
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    checked={lastMileOnly}
+                    onChange={(e) => setLastMileOnly(e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-9 h-5 bg-white/10 rounded-full peer-checked:bg-coral/30 transition-colors" />
+                  <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-gray-400 rounded-full peer-checked:translate-x-4 peer-checked:bg-coral transition-all" />
+                </div>
+                <span className="text-xs font-medium text-gray-400 group-hover:text-gray-300 transition-colors whitespace-nowrap">
+                  Last-Mile Ride
                 </span>
               </label>
             </div>

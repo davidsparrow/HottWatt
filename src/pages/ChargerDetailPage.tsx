@@ -287,6 +287,54 @@ export default function ChargerDetailPage() {
               </div>
             </FadeInView>
 
+            {/* Last-Mile Ride Service */}
+            {charger.lastMile?.enabled && (
+              <FadeInView delay={0.22}>
+                <div className="glass-card p-6 sm:p-8 border-coral/20" style={{ boxShadow: '0 0 15px rgba(239,118,116,0.08)' }}>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-coral/10 flex items-center justify-center">
+                      <Car className="w-4 h-4 text-coral" />
+                    </div>
+                    <div>
+                      <h2 className="font-heading text-lg font-bold text-white">Last-Mile Ride</h2>
+                      <p className="text-xs text-coral font-medium">Only on HottWatt</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+                    This host offers a ride to get you from their home to your destination so you can let your car charge while you go about your day.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="bg-white/3 rounded-xl p-3 border border-white/5">
+                      <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Pricing</div>
+                      <div className="text-sm font-medium text-white">
+                        {charger.lastMile.pricingType === 'free' && 'Free'}
+                        {charger.lastMile.pricingType === 'flat' && `$${charger.lastMile.price.toFixed(2)} flat`}
+                        {charger.lastMile.pricingType === 'per_mile' && `$${charger.lastMile.price.toFixed(2)}/mile`}
+                        {charger.lastMile.pricingType === 'per_minute' && `$${charger.lastMile.price.toFixed(2)}/min`}
+                      </div>
+                    </div>
+                    <div className="bg-white/3 rounded-xl p-3 border border-white/5">
+                      <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Round Trip</div>
+                      <div className="text-sm font-medium text-white">
+                        {charger.lastMile.twoWay ? (
+                          <span className="text-electric">2-Way Available</span>
+                        ) : (
+                          <span>Drop-off Only</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {charger.lastMile.notes && (
+                    <div className="bg-coral/5 border border-coral/15 rounded-lg p-3">
+                      <p className="text-xs text-gray-400 italic">"{charger.lastMile.notes}"</p>
+                    </div>
+                  )}
+                </div>
+              </FadeInView>
+            )}
+
             {/* Reviews */}
             <FadeInView delay={0.25}>
               <div className="glass-card p-6 sm:p-8">

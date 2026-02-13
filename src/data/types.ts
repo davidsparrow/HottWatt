@@ -45,6 +45,16 @@ export interface ChargeClub {
   acceptingMembers: boolean;
 }
 
+export type LastMilePricing = 'free' | 'flat' | 'per_mile' | 'per_minute';
+
+export interface LastMileService {
+  enabled: boolean;
+  pricingType: LastMilePricing;
+  price: number;        // flat $, $/mile, or $/min (0 when free)
+  twoWay: boolean;      // round trip available
+  notes?: string;
+}
+
 export interface Charger {
   id: string;
   host: Host;
@@ -66,4 +76,5 @@ export interface Charger {
   reviews: Review[];
   availability: AvailabilitySlot[];
   imageUrl: string;
+  lastMile?: LastMileService;
 }

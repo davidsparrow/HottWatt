@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Zap, Search, Calendar, CreditCard, Shield, Users, Crown,
-  ChevronRight, MapPin, Clock, Star, ArrowRight,
+  ChevronRight, MapPin, Clock, Star, ArrowRight, Car,
 } from 'lucide-react';
 import FadeInView from '../components/FadeInView';
 import ChargeClubsModal from '../components/ChargeClubsModal';
@@ -16,13 +16,14 @@ const stats = [
 ];
 
 const features = [
-  { icon: Zap, title: 'Fast Listing', desc: 'List your charger in under 2 minutes and start earning immediately.' },
-  { icon: Search, title: 'Nearby Search', desc: 'Find available chargers near you with real-time availability status.' },
-  { icon: Calendar, title: 'Smart Scheduling', desc: 'Set your availability and let drivers book around your schedule.' },
-  { icon: CreditCard, title: 'Auto Payments', desc: 'Secure, automatic payments after every charging session.' },
-  { icon: Shield, title: 'Built-in Trust', desc: 'Verified hosts, driver reviews, and $50K damage protection.' },
-  { icon: Users, title: 'Neighbourhood Networks', desc: 'Join local charging communities and help your neighbours go electric.' },
-  { icon: Crown, title: 'WattClub', desc: 'Premium membership with 15% savings, priority booking, and exclusive perks.' },
+  { icon: Zap, title: 'Fast Listing', desc: 'List your charger in under 2 minutes — set your price, availability windows, and charger specs.', accent: false },
+  { icon: Search, title: 'Nearby Search', desc: 'Drivers search by location, connector type, and time slot — then book and pay through the app.', accent: false },
+  { icon: Calendar, title: 'Smart Scheduling', desc: 'Drivers get the exact address after booking, activate the charger via the app, and payments auto-process.', accent: false },
+  { icon: CreditCard, title: 'Auto Payments', desc: 'Payments auto-process based on electricity used plus an access fee you set. No chasing invoices.', accent: false },
+  { icon: Shield, title: 'Built-in Trust', desc: 'Verified profiles, two-way reviews, and $50K host insurance coverage on every session.', accent: false },
+  { icon: Car, title: 'Last-Mile Rides', desc: 'Only on HottWatt — hosts offer to drive you to your destination while your car charges. Free, flat fee, $/mile, or $/min with optional round-trip.', accent: true },
+  { icon: Users, title: 'Neighbourhood Networks', desc: 'Charge Clubs let apartment complexes partner with nearby homeowners for dedicated charging slots.', accent: false },
+  { icon: Crown, title: 'WattClub', desc: 'Premium membership with 15% savings, priority booking, and exclusive perks.', accent: false },
 ];
 
 const steps = [
@@ -161,9 +162,20 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {features.map((feat, i) => (
               <FadeInView key={feat.title} delay={i * 0.08}>
-                <div className="glass-card glass-card-hover p-6 h-full transition-all duration-300 group">
-                  <div className="w-10 h-10 rounded-lg bg-electric/10 flex items-center justify-center mb-4 group-hover:bg-electric/20 transition-colors">
-                    <feat.icon className="w-5 h-5 text-electric" />
+                <div className={`glass-card glass-card-hover p-6 h-full transition-all duration-300 group ${
+                  feat.accent ? 'border-coral/20 relative overflow-hidden' : ''
+                }`} style={feat.accent ? { boxShadow: '0 0 20px rgba(239,118,116,0.1)' } : undefined}>
+                  {feat.accent && (
+                    <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold bg-coral/15 text-coral border border-coral/25 uppercase tracking-wider">
+                      Exclusive
+                    </span>
+                  )}
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 transition-colors ${
+                    feat.accent
+                      ? 'bg-coral/10 group-hover:bg-coral/20'
+                      : 'bg-electric/10 group-hover:bg-electric/20'
+                  }`}>
+                    <feat.icon className={`w-5 h-5 ${feat.accent ? 'text-coral' : 'text-electric'}`} />
                   </div>
                   <h3 className="font-heading font-semibold text-white mb-2">{feat.title}</h3>
                   <p className="text-sm text-gray-400 leading-relaxed">{feat.desc}</p>
