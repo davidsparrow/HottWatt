@@ -24,6 +24,27 @@ export interface AvailabilitySlot {
   hours: number[]; // available hours, e.g. [8,9,10,11,12,13,14,15,16]
 }
 
+export interface ChargerTypeBreakdown {
+  label: string;
+  percent: number;
+  color: string;
+}
+
+export interface ChargeClub {
+  id: string;
+  name: string;
+  neighborhood: string;
+  city: string;
+  x: number; // percentage position on map
+  y: number; // percentage position on map
+  totalMembers: number;
+  totalChargeCapacityKW: number;
+  totalWattsReceived: string;
+  chargerTypes: ChargerTypeBreakdown[];
+  foundedDate: string;
+  acceptingMembers: boolean;
+}
+
 export interface Charger {
   id: string;
   host: Host;
