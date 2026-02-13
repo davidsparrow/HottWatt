@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Zap, Clock, CheckCircle } from 'lucide-react';
+import { Star, MapPin, Zap, Clock, CheckCircle, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import type { Charger } from '../data/types';
+
+/** Mask street number for pre-booking privacy */
+function maskAddress(address: string): string {
+  return address.replace(/^\d+\s*/, '*** ');
+}
 
 interface ChargerCardProps {
   charger: Charger;
@@ -54,12 +59,17 @@ export default function ChargerCard({ charger, index }: ChargerCardProps) {
           </div>
         </div>
 
-        {/* Address */}
+        {/* Address — masked until booking */}
         <div className="flex items-start gap-2 mb-3">
           <MapPin className="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm text-gray-300">{charger.address}</p>
-            <p className="text-xs text-gray-500">{charger.city} &middot; {charger.distance}</p>
+            <p className="text-sm text-gray-300">{maskAddress(charger.address)}</p>
+            <div className="flex items-center gap-1.5">
+              <p className="text-xs text-gray-500">{charger.city} &middot; {charger.distance}</p>
+              <span className="inline-flex items-center gap-0.5 text-[9px] text-gray-600">
+                <Lock className="w-2.5 h-2.5" />exact address after booking
+              </span>
+            </div>
           </div>
         </div>
 

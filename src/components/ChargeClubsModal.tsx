@@ -691,6 +691,17 @@ export default function ChargeClubsModal({ isOpen, onClose }: ChargeClubsModalPr
                   </div>
                   <div className="text-gray-600">{chargeClubs.length} clubs &middot; {chargeClubs.reduce((s, c) => s + c.totalMembers, 0)} total members</div>
                 </div>
+
+                {/* Apartment partnership callout */}
+                <div className="absolute bottom-4 right-4 glass-card p-3 text-xs max-w-52 hidden sm:block">
+                  <div className="flex items-center gap-1.5 mb-1 text-electric font-medium">
+                    <Users className="w-3 h-3" />
+                    Apartment Partnerships
+                  </div>
+                  <p className="text-gray-500 leading-relaxed">
+                    Apartment complexes can partner with nearby homeowner clubs for dedicated charging slots.
+                  </p>
+                </div>
               </div>
 
               {/* Bottom buttons */}

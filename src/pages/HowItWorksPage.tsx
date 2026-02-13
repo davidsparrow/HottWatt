@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import {
   ArrowLeft, Users, Zap, Shield, PartyPopper, Megaphone, MapPin,
   ClipboardList, CheckCircle, Lightbulb, MessageSquare, ChevronRight,
-  Heart, Battery, Home,
+  Heart, Battery, Home, Building2,
 } from 'lucide-react';
 import FadeInView from '../components/FadeInView';
 
@@ -63,6 +63,11 @@ const benefits = [
     icon: Home,
     title: 'Home Value Boost',
     desc: 'Neighborhoods with active Charge Clubs see higher property interest from EV-driving homebuyers. Your driveway is an asset.',
+  },
+  {
+    icon: Building2,
+    title: 'Apartment Partnerships',
+    desc: 'Apartment complexes can partner with nearby homeowners for dedicated charging slots. Residents get guaranteed access, homeowners get steady income — everyone wins.',
   },
 ];
 

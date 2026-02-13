@@ -95,7 +95,7 @@ export default function LandingPage() {
                 <ChevronRight className="w-4 h-4" />
               </Link>
               <Link
-                to="/browse"
+                to="/list"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-white/15 text-white font-semibold rounded-xl hover:bg-white/5 transition-all text-base"
               >
                 List Your Charger
