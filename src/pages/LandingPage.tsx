@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -5,6 +6,7 @@ import {
   ChevronRight, MapPin, Clock, Star, ArrowRight,
 } from 'lucide-react';
 import FadeInView from '../components/FadeInView';
+import ChargeClubsModal from '../components/ChargeClubsModal';
 
 const stats = [
   { value: '33,600+', label: 'Chargers Listed' },
@@ -30,6 +32,8 @@ const steps = [
 ];
 
 export default function LandingPage() {
+  const [clubsModalOpen, setClubsModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen">
       {/* Hero */}
@@ -97,6 +101,13 @@ export default function LandingPage() {
                 List Your Charger
                 <ArrowRight className="w-4 h-4" />
               </Link>
+              <button
+                onClick={() => setClubsModalOpen(true)}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-hotpink text-white font-semibold rounded-xl hover:bg-hotpink-dim transition-all shadow-lg shadow-hotpink/25 text-base"
+              >
+                <Users className="w-4 h-4" />
+                Charge Clubs
+              </button>
             </motion.div>
           </div>
         </div>
@@ -230,6 +241,9 @@ export default function LandingPage() {
           </FadeInView>
         </div>
       </section>
+
+      {/* Charge Clubs Modal */}
+      <ChargeClubsModal isOpen={clubsModalOpen} onClose={() => setClubsModalOpen(false)} />
     </div>
   );
 }
