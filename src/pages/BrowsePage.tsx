@@ -1,9 +1,32 @@
 import { useState, useMemo } from 'react';
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { Search, SlidersHorizontal, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { chargers } from '../data/chargers';
 import ChargerCard from '../components/ChargerCard';
 import type { ChargingLevel, ConnectorType } from '../data/types';
+
+const dayOptions = [
+  { value: -1, label: 'Any Day' },
+  { value: 1, label: 'Mon' },
+  { value: 2, label: 'Tue' },
+  { value: 3, label: 'Wed' },
+  { value: 4, label: 'Thu' },
+  { value: 5, label: 'Fri' },
+  { value: 6, label: 'Sat' },
+  { value: 0, label: 'Sun' },
+];
+
+const timeOptions = [
+  { value: -1, label: 'Any Time' },
+  { value: 6, label: '6 AM' },
+  { value: 8, label: '8 AM' },
+  { value: 10, label: '10 AM' },
+  { value: 12, label: '12 PM' },
+  { value: 14, label: '2 PM' },
+  { value: 16, label: '4 PM' },
+  { value: 18, label: '6 PM' },
+  { value: 20, label: '8 PM' },
+];
 
 const levels: { value: ChargingLevel | 'All'; label: string }[] = [
   { value: 'All', label: 'All Levels' },
@@ -24,6 +47,8 @@ export default function BrowsePage() {
   const [selectedLevel, setSelectedLevel] = useState<ChargingLevel | 'All'>('All');
   const [selectedConnector, setSelectedConnector] = useState<ConnectorType | 'All'>('All');
   const [availableOnly, setAvailableOnly] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(-1);
+  const [selectedTime, setSelectedTime] = useState(-1);
 
   const filtered = useMemo(() => {
     return chargers.filter((c) => {
@@ -39,9 +64,19 @@ export default function BrowsePage() {
       const matchConnector = selectedConnector === 'All' || c.connectorType === selectedConnector;
       const matchAvailable = !availableOnly || c.available;
 
-      return matchSearch && matchLevel && matchConnector && matchAvailable;
+      // Time slot filter
+      let matchTimeSlot = true;
+      if (selectedDay >= 0 || selectedTime >= 0) {
+        matchTimeSlot = c.availability.some((slot) => {
+          const dayMatch = selectedDay < 0 || slot.day === selectedDay;
+          const timeMatch = selectedTime < 0 || slot.hours.includes(selectedTime);
+          return dayMatch && timeMatch;
+        });
+      }
+
+      return matchSearch && matchLevel && matchConnector && matchAvailable && matchTimeSlot;
     });
-  }, [searchQuery, selectedLevel, selectedConnector, availableOnly]);
+  }, [searchQuery, selectedLevel, selectedConnector, availableOnly, selectedDay, selectedTime]);
 
   return (
     <div className="min-h-screen pt-24 pb-16">
@@ -139,6 +174,51 @@ export default function BrowsePage() {
                   Available Now
                 </span>
               </label>
+            </div>
+          </div>
+
+          {/* Time slot filters */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-4 pt-4 border-t border-white/5">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <Clock className="w-3.5 h-3.5 text-gray-500" />
+                <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Day</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {dayOptions.map((d) => (
+                  <button
+                    key={d.value}
+                    onClick={() => setSelectedDay(d.value)}
+                    className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border ${
+                      selectedDay === d.value
+                        ? 'bg-electric/15 text-electric border-electric/30'
+                        : 'bg-white/3 text-gray-400 border-white/8 hover:bg-white/5 hover:text-gray-300'
+                    }`}
+                  >
+                    {d.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Time Slot</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {timeOptions.map((t) => (
+                  <button
+                    key={t.value}
+                    onClick={() => setSelectedTime(t.value)}
+                    className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border ${
+                      selectedTime === t.value
+                        ? 'bg-electric/15 text-electric border-electric/30'
+                        : 'bg-white/3 text-gray-400 border-white/8 hover:bg-white/5 hover:text-gray-300'
+                    }`}
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>

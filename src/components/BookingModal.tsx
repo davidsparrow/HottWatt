@@ -9,6 +9,7 @@ interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
   wattClub: boolean;
+  onBookingConfirmed?: () => void;
 }
 
 type Step = 'calendar' | 'form';
@@ -41,7 +42,7 @@ function getBookedHours(charger: Charger, date: Date): number[] {
   return booked;
 }
 
-export default function BookingModal({ charger, isOpen, onClose, wattClub }: BookingModalProps) {
+export default function BookingModal({ charger, isOpen, onClose, wattClub, onBookingConfirmed }: BookingModalProps) {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
@@ -160,6 +161,7 @@ export default function BookingModal({ charger, isOpen, onClose, wattClub }: Boo
         },
       }
     );
+    onBookingConfirmed?.();
     onClose();
     // Reset state
     setStep('calendar');

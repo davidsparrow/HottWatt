@@ -9,6 +9,7 @@ import LandingPage from './pages/LandingPage';
 import BrowsePage from './pages/BrowsePage';
 import ChargerDetailPage from './pages/ChargerDetailPage';
 import HowItWorksPage from './pages/HowItWorksPage';
+import ListChargerPage from './pages/ListChargerPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -35,6 +36,7 @@ function AnimatedRoutes() {
           <Route path="/browse" element={<BrowsePage />} />
           <Route path="/charger/:id" element={<ChargerDetailPage />} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
+          <Route path="/list" element={<ListChargerPage />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
