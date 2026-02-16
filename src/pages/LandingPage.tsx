@@ -38,23 +38,22 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 gradient-hero" />
-        <div className="absolute inset-0 dot-pattern opacity-40" />
-        <div className="absolute top-1/4 -right-32 w-96 h-96 bg-electric/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 -left-32 w-80 h-80 bg-hotpink/10 rounded-full blur-[100px]" />
+      <section className="relative min-h-[88vh] flex items-center overflow-hidden">
+        {/* Decorative blobs */}
+        <div className="absolute top-1/4 -right-32 w-96 h-96 bg-electric/8 rounded-full blur-[140px]" />
+        <div className="absolute bottom-1/4 -left-32 w-80 h-80 bg-yellow-300/15 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-electric/4 rounded-full blur-[180px]" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-40">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 sm:py-36">
           <div className="max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-electric/30 bg-electric/5 mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-electric/30 bg-electric/8 mb-8">
                 <Zap className="w-3.5 h-3.5 text-electric" />
-                <span className="text-xs font-medium text-electric">Peer-to-peer EV charging</span>
+                <span className="text-xs font-semibold text-electric tracking-wide uppercase">Peer-to-peer EV charging</span>
               </div>
             </motion.div>
 
@@ -62,13 +61,13 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900"
             >
               Your driveway is the next{' '}
               <span className="text-electric relative">
                 charging station
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
-                  <path d="M2 10C50 4 150 2 298 6" stroke="#22c55e" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
+                  <path d="M2 10C50 4 150 2 298 6" stroke="#66B60C" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
                 </svg>
               </span>
             </motion.h1>
@@ -77,7 +76,7 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl leading-relaxed"
+              className="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl leading-relaxed"
             >
               Rent your home EV charger to drivers in your neighbourhood, or find one nearby when you need a charge. Affordable, convenient, community-powered.
             </motion.p>
@@ -86,25 +85,25 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <Link
                 to="/browse"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-electric text-black font-semibold rounded-xl hover:bg-electric-dim transition-all glow-green text-base"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-electric text-white font-semibold rounded-full hover:bg-electric-dim transition-all glow-green-sm text-base shadow-sm"
               >
                 Rent a Charger
                 <ChevronRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/list"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-white/15 text-white font-semibold rounded-xl hover:bg-white/5 transition-all text-base"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-full hover:border-electric hover:text-electric transition-all text-base"
               >
                 List Your Charger
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <button
                 onClick={() => setClubsModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-hotpink text-white font-semibold rounded-xl hover:bg-hotpink-dim transition-all shadow-lg shadow-hotpink/25 text-base"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-hotpink text-white font-semibold rounded-full hover:bg-hotpink-dim transition-all shadow-sm text-base"
               >
                 <Users className="w-4 h-4" />
                 Charge Clubs
@@ -115,14 +114,14 @@ export default function LandingPage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="relative -mt-12 z-10">
-        <div className="max-w-5xl mx-auto px-4">
+      <section className="relative -mt-10 z-10 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass-card p-6 sm:p-8"
+            className="page-card p-6 sm:p-10"
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {stats.map((stat, i) => (
@@ -137,7 +136,7 @@ export default function LandingPage() {
                   <div className="font-heading text-2xl sm:text-3xl font-bold text-electric mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-gray-400">{stat.label}</div>
+                  <div className="text-sm text-gray-500">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -147,14 +146,14 @@ export default function LandingPage() {
 
       {/* Features Grid */}
       <section className="py-24 sm:py-32 relative">
-        <div className="absolute inset-0 dot-pattern opacity-20" />
+        <div className="absolute inset-0 dot-pattern opacity-60" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInView className="text-center mb-16">
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4 text-gray-900">
               Everything you need to{' '}
               <span className="text-electric">charge smarter</span>
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
               From listing to payment, we handle it all so you can focus on what matters.
             </p>
           </FadeInView>
@@ -162,23 +161,23 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {features.map((feat, i) => (
               <FadeInView key={feat.title} delay={i * 0.08}>
-                <div className={`glass-card glass-card-hover p-6 h-full transition-all duration-300 group ${
-                  feat.accent ? 'border-coral/20 relative overflow-hidden' : ''
-                }`} style={feat.accent ? { boxShadow: '0 0 20px rgba(239,118,116,0.1)' } : undefined}>
+                <div className={`page-card page-card-hover p-6 h-full transition-all duration-300 group cursor-default ${
+                  feat.accent ? 'border-coral/30 relative overflow-hidden' : ''
+                }`} style={feat.accent ? { boxShadow: '0 4px 24px rgba(239,118,116,0.12)' } : undefined}>
                   {feat.accent && (
-                    <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold bg-coral/15 text-coral border border-coral/25 uppercase tracking-wider">
+                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-coral/10 text-coral border border-coral/25 uppercase tracking-wider">
                       Exclusive
                     </span>
                   )}
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 transition-colors ${
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-colors ${
                     feat.accent
-                      ? 'bg-coral/10 group-hover:bg-coral/20'
-                      : 'bg-electric/10 group-hover:bg-electric/20'
+                      ? 'bg-coral/10 group-hover:bg-coral/18'
+                      : 'bg-electric/10 group-hover:bg-electric/18'
                   }`}>
                     <feat.icon className={`w-5 h-5 ${feat.accent ? 'text-coral' : 'text-electric'}`} />
                   </div>
-                  <h3 className="font-heading font-semibold text-white mb-2">{feat.title}</h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">{feat.desc}</p>
+                  <h3 className="font-heading font-semibold text-gray-900 mb-2">{feat.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">{feat.desc}</p>
                 </div>
               </FadeInView>
             ))}
@@ -188,13 +187,13 @@ export default function LandingPage() {
 
       {/* How it works */}
       <section className="py-24 sm:py-32 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-electric/5 rounded-full blur-[150px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-electric/5 rounded-full blur-[160px]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInView className="text-center mb-16">
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4 text-gray-900">
               How it <span className="text-electric">works</span>
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
               Three simple steps to start charging — or earning.
             </p>
           </FadeInView>
@@ -202,13 +201,13 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {steps.map((step, i) => (
               <FadeInView key={step.num} delay={i * 0.15}>
-                <div className="relative glass-card p-8 text-center group hover:border-electric/20 transition-all duration-300">
-                  <div className="text-5xl font-heading font-bold text-electric/10 mb-4">{step.num}</div>
-                  <div className="w-14 h-14 rounded-full bg-electric/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-electric/20 transition-colors">
+                <div className="relative page-card p-8 sm:p-10 text-center group hover:border-electric/25 transition-all duration-300 cursor-default">
+                  <div className="text-5xl font-heading font-bold text-electric/15 mb-4">{step.num}</div>
+                  <div className="w-14 h-14 rounded-full bg-electric/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-electric/18 transition-colors">
                     <step.icon className="w-6 h-6 text-electric" />
                   </div>
-                  <h3 className="font-heading text-xl font-semibold text-white mb-3">{step.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                  <h3 className="font-heading text-xl font-semibold text-gray-900 mb-3">{step.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
                   {i < steps.length - 1 && (
                     <div className="hidden md:block absolute top-1/2 -right-4 text-electric/30">
                       <ChevronRight className="w-8 h-8" />
@@ -225,24 +224,24 @@ export default function LandingPage() {
       <section className="py-24 sm:py-32">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInView>
-            <div className="glow-border rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden">
-              <div className="absolute inset-0 dot-pattern opacity-10" />
+            <div className="glow-border rounded-2xl p-10 sm:p-16 text-center relative overflow-hidden bg-white">
+              <div className="absolute inset-0 dot-pattern opacity-30" />
               <div className="relative">
                 <div className="flex justify-center mb-6">
                   <div className="w-16 h-16 rounded-full bg-electric/10 flex items-center justify-center">
                     <Star className="w-8 h-8 text-electric" />
                   </div>
                 </div>
-                <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4">
+                <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4 text-gray-900">
                   Ready to join the <span className="text-electric">revolution</span>?
                 </h2>
-                <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto">
+                <p className="text-gray-500 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
                   Whether you drive an EV or own a charger, HottWatt connects you with your community.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     to="/browse"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-electric text-black font-semibold rounded-xl hover:bg-electric-dim transition-all glow-green text-base"
+                    className="inline-flex items-center justify-center gap-2.5 px-10 py-4 bg-electric text-white font-semibold rounded-full hover:bg-electric-dim transition-all glow-green-sm text-base shadow-sm"
                   >
                     Get Started
                     <ChevronRight className="w-4 h-4" />
