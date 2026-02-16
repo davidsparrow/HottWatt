@@ -7,23 +7,22 @@
 @import "@fontsource/inter/500.css";
 @import "@fontsource/inter/600.css";
 
-/* was f9fafb, user asked for 'whitie' */
---color-surface: #ffffff;
---color-surface-hover: #f3f4f6;
---color-surface-border: #e5e7eb;
---color-text-primary: #111827;
---color-text-secondary: #4b5563;
---color-text-tertiary: #9ca3af;
+@theme {
+  /* was f9fafb, user asked for 'whitie' */
+  --color-surface: #ffffff;
+  --color-surface-hover: #f3f4f6;
+  --color-surface-border: #e5e7eb;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-tertiary: #9ca3af;
 
-/* Legacy / Dark Tokens (Preserved for future toggle) */
---color-dark-bg: #0a0a0f;
---color-dark-card: #111118;
---color-dark-lighter: #1a1a24;
+  /* Legacy / Dark Tokens (Preserved for future toggle) */
+  --color-dark-bg: #0a0a0f;
+  --color-dark-card: #111118;
+  --color-dark-lighter: #1a1a24;
 
---font-heading: "Space Grotesk",
-sans-serif;
---font-body: "Inter",
-sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
 * {
