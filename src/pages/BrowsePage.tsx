@@ -212,8 +212,8 @@ export default function BrowsePage() {
                     key={d.value}
                     onClick={() => setSelectedDay(d.value)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${selectedDay === d.value
-                        ? 'bg-electric/10 text-electric-dim border-electric/20'
-                        : 'bg-white text-slate-500 border-slate-100 hover:border-slate-300'
+                      ? 'bg-electric/10 text-electric-dim border-electric/20'
+                      : 'bg-white text-slate-500 border-slate-100 hover:border-slate-300'
                       }`}
                   >
                     {d.label}
@@ -231,8 +231,8 @@ export default function BrowsePage() {
                     key={t.value}
                     onClick={() => setSelectedTime(t.value)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${selectedTime === t.value
-                        ? 'bg-electric/10 text-electric-dim border-electric/20'
-                        : 'bg-white text-slate-500 border-slate-100 hover:border-slate-300'
+                      ? 'bg-electric/10 text-electric-dim border-electric/20'
+                      : 'bg-white text-slate-500 border-slate-100 hover:border-slate-300'
                       }`}
                   >
                     {t.label}
@@ -241,32 +241,32 @@ export default function BrowsePage() {
               </div>
             </div>
           </div>
-      </div>
+        </motion.div>
 
-      {/* Results count */}
-      <div className="mb-8 flex items-center justify-between">
-        <div className="text-sm font-medium text-slate-500">
-          Scanning area... found <span className="text-slate-900 font-bold">{filtered.length}</span> chargers
-        </div>
-      </div>
-
-      {/* Charger Grid with increased gap */}
-      {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
-          {filtered.map((charger, i) => (
-            <ChargerCard key={charger.id} charger={charger} index={i} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-32 bg-slate-50/50 rounded-3xl border border-dashed border-slate-200">
-          <div className="w-20 h-20 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center mx-auto mb-6">
-            <Search className="w-8 h-8 text-slate-300" />
+        {/* Results count */}
+        <div className="mb-8 flex items-center justify-between">
+          <div className="text-sm font-medium text-slate-500">
+            Scanning area... found <span className="text-slate-900 font-bold">{filtered.length}</span> chargers
           </div>
-          <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">No chargers found</h3>
-          <p className="text-slate-500">Try adjusting your filters or search term.</p>
         </div>
-      )}
+
+        {/* Charger Grid with increased gap */}
+        {filtered.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
+            {filtered.map((charger, i) => (
+              <ChargerCard key={charger.id} charger={charger} index={i} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-32 bg-slate-50/50 rounded-3xl border border-dashed border-slate-200">
+            <div className="w-20 h-20 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center mx-auto mb-6">
+              <Search className="w-8 h-8 text-slate-300" />
+            </div>
+            <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">No chargers found</h3>
+            <p className="text-slate-500">Try adjusting your filters or search term.</p>
+          </div>
+        )}
+      </div>
     </div>
-    </div >
   );
 }
