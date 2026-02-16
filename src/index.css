@@ -62,11 +62,16 @@ h6 {
 
 /* Restored VideoMule Utilities */
 .soft-card {
-  @apply bg-white rounded-3xl border border-white/60 shadow-[0_8px_30px_rgb(0, 0, 0, 0.04)] transition-all duration-300;
+  @apply bg-white rounded-3xl border border-white/60 transition-all duration-300;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
 }
 
 .soft-card-hover {
-  @apply hover:shadow-[0_20px_40px_rgb(0, 0, 0, 0.08)] hover:-translate-y-1;
+  @apply hover:-translate-y-1;
+}
+
+.soft-card-hover:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 .container-breath {
