@@ -8,6 +8,7 @@
 @import "@fontsource/inter/600.css";
 
 @theme {
+  /* Brand Colors */
   --color-electric: #22c55e;
   --color-electric-dim: #16a34a;
   --color-electric-glow: rgba(34, 197, 94, 0.4);
@@ -15,12 +16,22 @@
   --color-hotpink-dim: #9e1c3a;
   --color-coral: #EF7674;
   --color-coral-dim: #d95a58;
-  --color-surface: rgba(255, 255, 255, 0.05);
-  --color-surface-hover: rgba(255, 255, 255, 0.08);
-  --color-surface-border: rgba(255, 255, 255, 0.1);
+
+  /* Theme Tokens - Default (Light) */
+  --color-background: #ffffff;
+  /* was f9fafb, user asked for 'whitie' */
+  --color-surface: #ffffff;
+  --color-surface-hover: #f3f4f6;
+  --color-surface-border: #e5e7eb;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-tertiary: #9ca3af;
+
+  /* Legacy / Dark Tokens (Preserved for future toggle) */
   --color-dark-bg: #0a0a0f;
   --color-dark-card: #111118;
   --color-dark-lighter: #1a1a24;
+
   --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
 }
@@ -37,78 +48,88 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-dark-bg);
-  color: #e5e7eb;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }
 
 /* Dot pattern overlay */
+/* Dot pattern overlay - Made subtle for light theme */
 .dot-pattern {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* Glass card */
+/* Card Styles - Pivoted to Minimalist "Whitie" */
 .glass-card {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 
 .glass-card-hover:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: var(--color-surface-hover);
+  border-color: #d1d5db;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 /* Glow effects */
 .glow-green {
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.3), 0 0 60px rgba(34, 197, 94, 0.1);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
 }
 
 .glow-green-sm {
-  box-shadow: 0 0 10px rgba(34, 197, 94, 0.25), 0 0 30px rgba(34, 197, 94, 0.08);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.2);
 }
 
 .glow-border {
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.15), inset 0 0 20px rgba(34, 197, 94, 0.05);
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.1);
 }
 
 /* Gradient backgrounds */
 .gradient-dark {
-  background: linear-gradient(180deg, #0a0a0f 0%, #0f1118 50%, #0a0a0f 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f3f4f6 100%);
 }
 
 .gradient-hero {
-  background: linear-gradient(135deg, #0a0a0f 0%, #111827 40%, #0a0a0f 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  /* Subtle electric tint */
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #0a0a0f;
+  background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: #d1d5db;
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: #9ca3af;
 }
 
 /* Toast overrides */
 .toast-custom {
   background: #1a1a24 !important;
   color: #e5e7eb !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }

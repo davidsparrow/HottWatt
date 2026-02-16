@@ -50,7 +50,7 @@ function AnimatedRoutes() {
 
 function AppLayout() {
   return (
-    <div className="min-h-screen gradient-dark">
+    <div className="min-h-screen">
       <AdBanner />
       <Navbar />
       <main>

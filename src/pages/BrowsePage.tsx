@@ -91,10 +91,10 @@ export default function BrowsePage() {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <h1 className="font-heading text-3xl sm:text-4xl font-bold mb-2">
+          <h1 className="font-heading text-3xl sm:text-4xl font-bold mb-2 text-text-primary">
             Browse <span className="text-electric">Chargers</span>
           </h1>
-          <p className="text-gray-400">Find the perfect charger near you</p>
+          <p className="text-text-secondary">Find the perfect charger near you</p>
         </motion.div>
 
         {/* Search & Filters */}
@@ -102,17 +102,17 @@ export default function BrowsePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="glass-card p-4 sm:p-6 mb-8"
+          className="bg-surface border border-surface-border rounded-xl shadow-sm p-4 sm:p-6 mb-8"
         >
           {/* Search bar */}
           <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
               placeholder="Search by location, host, or charger brand..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-electric/40 focus:ring-1 focus:ring-electric/20 transition-colors"
+              className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-text-primary placeholder-gray-400 focus:outline-none focus:border-electric/40 focus:ring-1 focus:ring-electric/20 transition-colors"
             />
           </div>
 
@@ -120,19 +120,18 @@ export default function BrowsePage() {
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <SlidersHorizontal className="w-3.5 h-3.5 text-gray-500" />
-                <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Level</span>
+                <SlidersHorizontal className="w-3.5 h-3.5 text-text-secondary" />
+                <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Level</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {levels.map((level) => (
                   <button
                     key={level.value}
                     onClick={() => setSelectedLevel(level.value)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${
-                      selectedLevel === level.value
-                        ? 'bg-electric/15 text-electric border-electric/30'
-                        : 'bg-white/3 text-gray-400 border-white/8 hover:bg-white/5 hover:text-gray-300'
-                    }`}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${selectedLevel === level.value
+                        ? 'bg-electric/10 text-electric-dim border-electric/20'
+                        : 'bg-white text-text-secondary border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                      }`}
                   >
                     {level.label}
                   </button>
@@ -142,18 +141,17 @@ export default function BrowsePage() {
 
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Connector</span>
+                <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Connector</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {connectors.map((conn) => (
                   <button
                     key={conn.value}
                     onClick={() => setSelectedConnector(conn.value)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${
-                      selectedConnector === conn.value
-                        ? 'bg-electric/15 text-electric border-electric/30'
-                        : 'bg-white/3 text-gray-400 border-white/8 hover:bg-white/5 hover:text-gray-300'
-                    }`}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${selectedConnector === conn.value
+                        ? 'bg-electric/10 text-electric-dim border-electric/20'
+                        : 'bg-white text-text-secondary border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                      }`}
                   >
                     {conn.label}
                   </button>
@@ -170,10 +168,10 @@ export default function BrowsePage() {
                     onChange={(e) => setAvailableOnly(e.target.checked)}
                     className="sr-only peer"
                   />
-                  <div className="w-9 h-5 bg-white/10 rounded-full peer-checked:bg-electric/30 transition-colors" />
-                  <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-gray-400 rounded-full peer-checked:translate-x-4 peer-checked:bg-electric transition-all" />
+                  <div className="w-9 h-5 bg-gray-200 rounded-full peer-checked:bg-electric/50 transition-colors" />
+                  <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-white shadow-sm rounded-full peer-checked:translate-x-4 peer-checked:bg-white transition-all border border-gray-200" />
                 </div>
-                <span className="text-xs font-medium text-gray-400 group-hover:text-gray-300 transition-colors whitespace-nowrap">
+                <span className="text-xs font-medium text-text-secondary group-hover:text-text-primary transition-colors whitespace-nowrap">
                   Available Now
                 </span>
               </label>
@@ -186,10 +184,10 @@ export default function BrowsePage() {
                     onChange={(e) => setLastMileOnly(e.target.checked)}
                     className="sr-only peer"
                   />
-                  <div className="w-9 h-5 bg-white/10 rounded-full peer-checked:bg-coral/30 transition-colors" />
-                  <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-gray-400 rounded-full peer-checked:translate-x-4 peer-checked:bg-coral transition-all" />
+                  <div className="w-9 h-5 bg-gray-200 rounded-full peer-checked:bg-coral/50 transition-colors" />
+                  <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-white shadow-sm rounded-full peer-checked:translate-x-4 peer-checked:bg-white transition-all border border-gray-200" />
                 </div>
-                <span className="text-xs font-medium text-gray-400 group-hover:text-gray-300 transition-colors whitespace-nowrap">
+                <span className="text-xs font-medium text-text-secondary group-hover:text-text-primary transition-colors whitespace-nowrap">
                   Last-Mile Ride
                 </span>
               </label>
@@ -197,22 +195,21 @@ export default function BrowsePage() {
           </div>
 
           {/* Time slot filters */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-4 pt-4 border-t border-white/5">
+          <div className="flex flex-col sm:flex-row gap-4 mt-4 pt-4 border-t border-gray-100">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-3.5 h-3.5 text-gray-500" />
-                <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Day</span>
+                <Clock className="w-3.5 h-3.5 text-text-secondary" />
+                <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Day</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {dayOptions.map((d) => (
                   <button
                     key={d.value}
                     onClick={() => setSelectedDay(d.value)}
-                    className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border ${
-                      selectedDay === d.value
-                        ? 'bg-electric/15 text-electric border-electric/30'
-                        : 'bg-white/3 text-gray-400 border-white/8 hover:bg-white/5 hover:text-gray-300'
-                    }`}
+                    className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border ${selectedDay === d.value
+                        ? 'bg-electric/10 text-electric-dim border-electric/20'
+                        : 'bg-white text-text-secondary border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                      }`}
                   >
                     {d.label}
                   </button>
@@ -221,18 +218,17 @@ export default function BrowsePage() {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Time Slot</span>
+                <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Time Slot</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {timeOptions.map((t) => (
                   <button
                     key={t.value}
                     onClick={() => setSelectedTime(t.value)}
-                    className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border ${
-                      selectedTime === t.value
-                        ? 'bg-electric/15 text-electric border-electric/30'
-                        : 'bg-white/3 text-gray-400 border-white/8 hover:bg-white/5 hover:text-gray-300'
-                    }`}
+                    className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border ${selectedTime === t.value
+                        ? 'bg-electric/10 text-electric-dim border-electric/20'
+                        : 'bg-white text-text-secondary border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                      }`}
                   >
                     {t.label}
                   </button>
@@ -243,7 +239,7 @@ export default function BrowsePage() {
         </motion.div>
 
         {/* Results count */}
-        <div className="mb-6 text-sm text-gray-500">
+        <div className="mb-6 text-sm text-text-secondary">
           {filtered.length} charger{filtered.length !== 1 ? 's' : ''} found
         </div>
 
@@ -256,11 +252,11 @@ export default function BrowsePage() {
           </div>
         ) : (
           <div className="text-center py-20">
-            <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4">
-              <Search className="w-7 h-7 text-gray-600" />
+            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
+              <Search className="w-7 h-7 text-gray-400" />
             </div>
-            <h3 className="font-heading text-lg font-semibold text-gray-400 mb-2">No chargers found</h3>
-            <p className="text-sm text-gray-600">Try adjusting your filters or search term.</p>
+            <h3 className="font-heading text-lg font-semibold text-text-secondary mb-2">No chargers found</h3>
+            <p className="text-sm text-text-tertiary">Try adjusting your filters or search term.</p>
           </div>
         )}
       </div>
