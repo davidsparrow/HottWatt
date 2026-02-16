@@ -23,16 +23,16 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
-      <div className="glass-card !rounded-none border-x-0 border-t-0">
+      <div className="navbar-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
               <div className="relative">
                 <Zap className="w-7 h-7 text-electric transition-transform group-hover:scale-110" />
-                <div className="absolute inset-0 blur-lg bg-electric/30 group-hover:bg-electric/50 transition-colors" />
+                <div className="absolute inset-0 blur-md bg-electric/20 group-hover:bg-electric/35 transition-colors" />
               </div>
-              <span className="font-heading text-xl font-bold tracking-tight">
+              <span className="font-heading text-xl font-bold tracking-tight text-gray-900">
                 Hott<span className="text-electric">Watt</span>
               </span>
             </Link>
@@ -46,7 +46,7 @@ export default function Navbar() {
                   className={`text-sm font-medium transition-colors relative ${
                     location.pathname === link.to
                       ? 'text-electric'
-                      : 'text-gray-300 hover:text-white'
+                      : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
                   {link.label}
@@ -61,28 +61,28 @@ export default function Navbar() {
 
               <Link
                 to="/browse"
-                className="px-4 py-2 bg-electric text-black font-semibold text-sm rounded-lg hover:bg-electric-dim transition-colors glow-green-sm"
+                className="px-5 py-2.5 bg-electric text-white font-semibold text-sm rounded-full hover:bg-electric-dim transition-colors glow-green-sm"
               >
                 Find a Charger
               </Link>
 
               {user ? (
-                <div className="flex items-center gap-3 ml-2">
+                <div className="flex items-center gap-3 ml-1">
                   <div className="flex items-center gap-2">
                     {profile?.avatar_url ? (
-                      <img src={profile.avatar_url} alt="" className="w-7 h-7 rounded-full bg-dark-lighter" />
+                      <img src={profile.avatar_url} alt="" className="w-8 h-8 rounded-full border border-gray-200" />
                     ) : (
-                      <div className="w-7 h-7 rounded-full bg-electric/10 flex items-center justify-center">
-                        <User className="w-3.5 h-3.5 text-electric" />
+                      <div className="w-8 h-8 rounded-full bg-electric/10 border border-electric/20 flex items-center justify-center">
+                        <User className="w-4 h-4 text-electric" />
                       </div>
                     )}
-                    <span className="text-sm text-gray-300 max-w-24 truncate">
+                    <span className="text-sm text-gray-700 max-w-24 truncate font-medium">
                       {profile?.full_name || user.email?.split('@')[0]}
                     </span>
                   </div>
                   <button
                     onClick={handleSignOut}
-                    className="p-1.5 rounded-lg hover:bg-white/10 transition-colors text-gray-500 hover:text-gray-300"
+                    className="p-2 rounded-full hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
                     title="Sign out"
                   >
                     <LogOut className="w-4 h-4" />
@@ -91,7 +91,7 @@ export default function Navbar() {
               ) : (
                 <Link
                   to="/auth"
-                  className="px-4 py-2 border border-white/15 text-white font-medium text-sm rounded-lg hover:bg-white/5 transition-colors"
+                  className="px-5 py-2.5 border border-gray-300 text-gray-700 font-medium text-sm rounded-full hover:border-electric hover:text-electric transition-colors"
                 >
                   Sign In
                 </Link>
@@ -101,7 +101,7 @@ export default function Navbar() {
             {/* Mobile menu button */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+              className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-colors text-gray-600"
             >
               {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -113,22 +113,22 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden glass-card !rounded-t-none !border-t-0 mx-2"
+            className="md:hidden bg-white border-b border-gray-100 shadow-lg mx-2 rounded-b-2xl overflow-hidden"
           >
-            <div className="px-4 py-4 space-y-3">
+            <div className="px-4 py-5 space-y-2">
               {links.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
                   onClick={() => setMenuOpen(false)}
-                  className={`block py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                  className={`block py-2.5 px-4 rounded-xl text-sm font-medium transition-colors ${
                     location.pathname === link.to
-                      ? 'bg-electric/10 text-electric'
-                      : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                      ? 'bg-electric/8 text-electric'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   }`}
                 >
                   {link.label}
@@ -137,7 +137,7 @@ export default function Navbar() {
               <Link
                 to="/browse"
                 onClick={() => setMenuOpen(false)}
-                className="block py-2 px-3 bg-electric text-black font-semibold text-sm rounded-lg text-center glow-green-sm"
+                className="block py-3 px-4 bg-electric text-white font-semibold text-sm rounded-full text-center glow-green-sm"
               >
                 Find a Charger
               </Link>
@@ -145,7 +145,7 @@ export default function Navbar() {
               {user ? (
                 <button
                   onClick={handleSignOut}
-                  className="w-full py-2 px-3 text-left rounded-lg text-sm font-medium text-gray-300 hover:bg-white/5 flex items-center gap-2"
+                  className="w-full py-2.5 px-4 text-left rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 flex items-center gap-2"
                 >
                   <LogOut className="w-4 h-4" />
                   Sign Out
@@ -154,7 +154,7 @@ export default function Navbar() {
                 <Link
                   to="/auth"
                   onClick={() => setMenuOpen(false)}
-                  className="block py-2 px-3 rounded-lg text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white border border-white/10 text-center"
+                  className="block py-2.5 px-4 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 border border-gray-200 text-center"
                 >
                   Sign In
                 </Link>
