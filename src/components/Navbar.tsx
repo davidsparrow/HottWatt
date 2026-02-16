@@ -1,25 +1,15 @@
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Zap, Menu, X, LogOut, User } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Zap, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-  const { user, profile, signOut } = useAuth();
+  const { user } = useAuth();
 
-  const links = [
-    { to: '/', label: 'Home' },
-    { to: '/browse', label: 'Browse Chargers' },
-  ];
 
-  const handleSignOut = async () => {
-    await signOut();
-    navigate('/');
-    setMenuOpen(false);
-  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 transition-all duration-300">
@@ -78,18 +68,18 @@ export default function Navbar() {
               </div>
             ) : (
               <div className="flex items-center gap-4">
-                <button
-                  onClick={() => setIsAuthOpen(true)}
+                <Link
+                  to="/auth"
                   className="text-sm font-semibold text-slate-600 hover:text-slate-900 px-2"
                 >
                   Log in
-                </button>
-                <button
-                  onClick={() => setIsAuthOpen(true)}
+                </Link>
+                <Link
+                  to="/auth?mode=signup"
                   className="px-6 py-2.5 rounded-full bg-slate-900 text-white font-semibold hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/10 hover:shadow-xl"
                 >
                   Sign up
-                </button>
+                </Link>
               </div>
             )}
           </div>
@@ -146,24 +136,20 @@ export default function Navbar() {
                   </Link>
                 ) : (
                   <div className="grid grid-cols-2 gap-4">
-                    <button
-                      onClick={() => {
-                        setMenuOpen(false);
-                        setIsAuthOpen(true);
-                      }}
+                    <Link
+                      to="/auth"
+                      onClick={() => setMenuOpen(false)}
                       className="px-4 py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-center"
                     >
                       Log in
-                    </button>
-                    <button
-                      onClick={() => {
-                        setMenuOpen(false);
-                        setIsAuthOpen(true);
-                      }}
+                    </Link>
+                    <Link
+                      to="/auth?mode=signup"
+                      onClick={() => setMenuOpen(false)}
                       className="px-4 py-3 rounded-xl bg-electric text-white font-semibold shadow-lg shadow-electric/20 text-center"
                     >
                       Sign up
-                    </button>
+                    </Link>
                   </div>
                 )}
               </div>

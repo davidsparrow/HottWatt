@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Zap, Clock, CheckCircle, Lock, Car } from 'lucide-react';
+import { Star, MapPin, Zap, Clock, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import type { Charger } from '../data/types';
 
