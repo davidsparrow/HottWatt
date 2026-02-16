@@ -1,0 +1,161 @@
+.section {
+  margin: 60px 0;
+  padding: 0 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 6px 0 0 0;
+}
+
+.reviewButton {
+  padding: 10px 20px;
+  background: #66B60C;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.reviewButton:hover {
+  background: #549a09;
+  transform: translateY(-2px);
+}
+
+.carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  /* Hide scrollbar */
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.reviewCard {
+  flex: 0 0 320px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.reviewCard:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+  border-color: rgba(102, 182, 12, 0.2);
+}
+
+.reviewHeader {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #66B60C, #a3e635);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.authorInfo {
+  flex: 1;
+}
+
+.author {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.date {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin: 2px 0 0 0;
+}
+
+.rating {
+  font-size: 0.9rem;
+  color: #fbbf24;
+  margin: 8px 0;
+  letter-spacing: 2px;
+}
+
+.text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 12px 0 0 0;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: #d1d5db;
+  text-align: center;
+  margin: 14px 0 0 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    margin: 40px 0;
+    padding: 0 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .reviewButton {
+    width: 100%;
+  }
+
+  .reviewCard {
+    flex: 0 0 280px;
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+}
