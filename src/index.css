@@ -60,6 +60,19 @@ h6 {
   background-size: 24px 24px;
 }
 
+/* Restored VideoMule Utilities */
+.soft-card {
+  @apply bg-white rounded-3xl border border-white/60 shadow-[0_8px_30px_rgb(0, 0, 0, 0.04)] transition-all duration-300;
+}
+
+.soft-card-hover {
+  @apply hover:shadow-[0_20px_40px_rgb(0, 0, 0, 0.08)] hover:-translate-y-1;
+}
+
+.container-breath {
+  @apply w-full mx-auto px-6 sm:px-10 max-w-6xl;
+}
+
 /* Card Styles - Pivoted to Minimalist "Whitie" */
 .glass-card {
   background: var(--color-surface);
