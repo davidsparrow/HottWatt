@@ -13,6 +13,7 @@ import HowItWorksPage from './pages/HowItWorksPage';
 import ListChargerPage from './pages/ListChargerPage';
 import AuthPage from './pages/AuthPage';
 import AuthCallbackPage from './pages/AuthCallbackPage';
+import TestPage1 from './pages/TestPage1';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -42,6 +43,7 @@ function AnimatedRoutes() {
           <Route path="/list" element={<ListChargerPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/auth/callback" element={<AuthCallbackPage />} />
+          <Route path="/test" element={<TestPage1 />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
